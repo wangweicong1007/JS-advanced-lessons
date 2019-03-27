@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第九章demo1</title>
+</head>
+<body>
+</body>
+<script>
+    console.log(a);//undefined
+    if(true){
+        var a=1;
+    }
+    console.log(a);//1
+
+//    foo();报错
+   console.log(foo);
+   //该种情况时，仅会对变量进行定义的提升！
+    var foo=function(){
+        console.log("hello");
+    }
+    foo();
+
+    AA();
+</script>
+</html>

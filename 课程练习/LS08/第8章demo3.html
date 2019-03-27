@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第8章demo3</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    //f1里定义了f2
+    var onj={x:3};
+    function f1(){
+        function f2(){
+            console.log(this.x);
+        }
+        return fn2;
+    }
+    obj.f3=f1;
+    obj.f4=f1();//相当于f2执行
+
+    obj.f3();
+    obj.f4();
+
+</script>
+</html>

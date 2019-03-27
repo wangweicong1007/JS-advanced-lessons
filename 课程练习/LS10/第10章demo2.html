@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div1" style="width:100px;height:50px;"></div>
+</body>
+<script>
+    var div1 = document.getElementById("div1");
+    var username = "zhangsan";
+    function foo() {
+        div1.onclick = function () {
+            this.innerHTML = username;
+        }
+    }
+    foo();
+
+
+//在匿名函数里的变量，外面是访问不到的
+//作用域限定在了，这里
+//尽量避免全局变量
+    (function(w,d){
+        w.onload=function(){
+
+        }
+    })(window,document);
+</script>
+
+</html>

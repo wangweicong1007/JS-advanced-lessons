@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第10章demo1</title>
+</head>
+<body>
+</body>
+<script>
+    var a=1;//全局变量，所有位置均可访问到
+    function fn1(){
+        console.log(a);//1
+        var b=2;
+        var c=3;
+        function fn2(){
+            var c=30;
+            var d=4;
+            console.log(c);//30
+            
+            //c=30;
+        }
+        fn2();
+        console.log(c);//3 ,如果fn2里c没有var，是重新赋值，30
+        console.log(d);//报错
+    }
+    //fn2();//报错，fn2的作用范围在fn1里
+    fn1();
+
+//上下两个相当于
+    //预解析
+    function fn1(){
+        //提升仅仅在当前作用域提升
+        function fn2(){
+            var c=30;
+        }
+        var b=2;
+        var c=3;
+    }
+
+
+    //静态性,变量和函数只要完成之后，作用域是确定的，和调用没有关系
+    var username="jack";
+    function foo(){
+        username="bill";//没有加var全局变量
+        console.log(username);//bill
+    }
+    function bar(){
+        var username="mike";
+        foo();
+        console.log(username);//mike
+    }
+    console.log(username);//jack,第一个输出
+    bar();
+    console.log(username);//bill，因为调用bar(),username值改变
+
+
+    //ES5没有块作用域
+    //只有函数的局部作用域
+    if(true){
+        var a=2;
+    }
+    console.log(a);//可访问到a
+
+
+    //===相当于
+    var a;
+    if(true){
+        a=2;
+    }
+    console.log(a);
+
+    //ES6
+    if(true){
+        let b=3;
+    }
+    console.log(b);//访问不到b
+
+
+
+    var userId=5;
+    document.onclick=function(){
+        console.log(userId);
+        userId=10;
+    }
+    //全局污染
+    // if(true){
+    //     var userId=30;
+    // }//先输出30，后来一直是10
+    
+    (function(){
+        if(true){
+        var userId=30;
+       }
+    }())//能输出5，不会在对全局变量有影响
+
+    //上下文，当某行代码执行过程中，它的上下文环境
+    //当前作用域包含的变量，函数调用栈，this的指向
+    var x=5;
+    var y=6;
+    function foo(){
+        var a=1;
+        var b=2;
+        function bar(){
+            var c=3;
+            var d=4;
+        }
+        bar();
+    }
+    foo();
+
+    console.log("小明回家");
+    var xx=["书桌","书包","铅笔盒"];
+    console.log("在家-做作业中");
+    function goToStore(){
+        var yy=["文具店老板","出售文具"];
+        console.log("在文具店-买文具中");
+        console.log("在文具店-买文具中  发现没带钱");
+        goToBank();
+        console.log("在文具店-买好文具  返回家");
+    }
+    function goToBank(){
+        var zz=["银行职员","柜员机"];
+        console.log("在银行-取钱  返回文具店");
+    }
+    console.log("在家-做作业中  发现笔没油了");
+    goToStore();
+    console.log("在家-继续做作业");
+
+    
+</script>
+</html>

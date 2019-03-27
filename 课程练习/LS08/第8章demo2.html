@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第8章demo2</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function fn1(){
+        //arguments 获取函数调用时传入的实参，类数组结构
+        for(var i=0;i<arguments,lengths.length;i++){
+            console.log(arguments[i]);
+            }
+
+            //函数名.length表示的是形参的个数
+            console.log(fn1.length);
+    }
+    fn1(10,5);
+
+
+    function fn2(){
+        console.log(fn2.caller);//caller定义在函数上面
+    }
+    function fn3(){
+        fn2();
+    }
+    fn3();
+
+    var func=function(n){
+        if(n<=0){
+            return 1;
+        }else{
+            //函数没有名字时用这个
+            return n=arguments.callee(n-1);
+        }
+    }
+
+    //call,apply
+    var objA={"objname":"AAA"};
+    var objB={"objname":"BBB"};
+    objA.foo=function(){
+        console.log(this.objname);
+    }
+    objA.foo();
+    //方法.call(对象)
+    objA.foo.call(objB);
+
+
+    //原本的this指向，使用Person构造函数实例化得到的对象
+    //构造函数的结构
+    function Person(username,age){
+        this.username=username;
+        this.age=age;
+        //其他方法
+        this.sayhi=function(){
+            console.log(this.username);
+        }
+    }
+
+   //Person.call(this,username);
+   //其具有一个指定的this值和分别地提供的参数（参数的列表）
+    function Student(username,age){
+
+        
+       //方法.call(对象)方法会被调用一次（立即执行）
+        Person.call(this,username);//想传多少参数，就往后面写
+        //执行完call也会得到sayhi（上个函数的其他方法）
+        //this.username=username;
+        // this.age=age;(使用call，age可以在上一个函数)
+
+        
+        //后面参数不同，apply(数组)
+        Person.apply(this,[username,age]);
+    }
+
+    var person = new Person("zhangsan");
+    var student=new Student("lisi",20);
+    console.log(student);
+
+
+
+//bind  切换当前this指向，（不会立即执行）生成一个新的函数
+    var objC={
+        "objname":"CCC",
+        "foo":function(){
+            console.log(this.objname);
+        }
+    }
+    var objD={"objname":"DDD"};
+    var foo2=objC.foo.bind(objD);
+    //需要单独调用才会执行
+    foo2();
+</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+</body>
+<script>
+    // (function 函数名（参数）{
+    //     函数体
+    // }（实参）);（可立即执行）
+    (function max(x, y) {
+        return x > y ? x : y;
+    }(2, 3));
+
+
+    (function min(a, b) {
+        return a > b ? b : a;
+    })(2, 3);
+
+    var userId = 2;
+    document.onclick = function () {
+        alert(userId);
+    }
+
+
+        //一个独立的，就放在一个框框里
+        (function () {
+            if (true) {
+                var userId = 20;//这个作用范围就在这个框里
+            }
+        })()
+
+
+    function foo() {
+        var arr1 = [];//函数数组
+        for (var i = 0; i < 10; i++) {
+            arr1[i]=(function(){
+                return i;
+            })()
+        }
+        return arr1;
+    }
+    var arr2=foo();
+   // arr2[0]();  (把那个函数的定义存在数组里面)
+   console.log(arr2);
+
+
+   function foo() {
+        var arr1 = [];//函数数组
+        for (var i = 0; i < 10; i++) {
+            //形成10个作用域，作用域内的j值各不相同
+            //并且不共享
+        (function(j){
+            arr1[j]=function(){
+                return j;}
+        })(i)
+        }
+        return arr1;
+    }
+    var arr2=foo();
+    arr2[0]();
+</script>
+
+</html>
