@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    for (var i = 0; i < 3; i++) {//for循环是同步循环
+        setTimeout(function () {
+            console.log(new Date(), i);
+            //异步回调，都在同步循环之后
+            //比for循环要晚
+        }, i * 1000);
+        //共享了这个i，输出的都是3
+    }
+
+    for (var i = 0; i < 3; i++) {
+        (function (j) {
+            setTimeout(function () {
+                console.log(new Date, j);
+            }, j * 1000);
+            //形成独立的定义域，不会互相影响
+        })(i);
+    }
+
+
+    //最基础的闭包结构
+    //闭包：通过返回函数（fn1）内部定义的函数（fn2）来访问fn1
+    //内部的局部变量（x）
+    function fn1() {
+        var x = 1;
+        function fn2() {
+            return ++x;
+        }
+        return fn2;
+    }
+    //    fn1();
+    var fn3 = fn1();
+    console.log(fn3());//2
+    console.log(fn3());//3
+
+
+    function fn1() {
+        var x = 1;
+        function fn2() {
+            return ++x;
+        }
+        return fn2;
+    }
+
+    var fn3 = fn1();
+    console.log(fn3);//输出的是fn2那段代码
+    console.log(fn3);
+</script>
+
+</html>

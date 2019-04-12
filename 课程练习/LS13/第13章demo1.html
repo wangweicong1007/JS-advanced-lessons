@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /* 对象 instanceof构造函数
+    1.判断对象能否使用该构造函数实例化得到
+    2.判断对象的原型链上能够找到该构造函数的原型
+
+    对象._proto_._proto_(长度不确定)==构造函数.prototype
+    */
+
+    console.log(Object instanceof Function);//true
+    console.log(Object._proto_  == Function.prototype);
+
+    console.log(Object instanceof Object);//true
+    console.log(Object._proto_._proto_ ==Object.prototype);
+
+
+    function Person(username,age){
+        this.username=username;
+        this.age=age=age;
+    }
+    var p=new Person("zhangsan",20);
+
+    console.log(p instanceof Person);
+
+
+
+    var o={
+        _x: 1,
+        get x(){
+            return this._x;
+        },
+        set x(val){
+            this._x=val;
+        }
+    }
+
+    o.x=10;//set x();
+    console.log(o.x,o._x);//10 10
+</script>
+
+</html>

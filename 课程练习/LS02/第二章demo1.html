@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>第2章demo1</title>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+
+</body>
+<script>
+  //基本（原始）数据类型与引用（对象）类型的区别 内存分配方式不同2
+  //内存的分配方式影响变量的生命周期
+  //函数局部变量中的值类型变量与引用类型变量
+
+  function foo() {
+    var n = 10;
+    var m = true;
+    var str = "hello world";//str:"hello world"存在栈中
+
+    //obj的引用存在栈中，{value:"hello world"}存在堆中，通过栈中的变量名obj（访问地址）访问
+    var obj = { value: "hello world" };
+  };
+  foo();
+
+  var a = 23;//堆区
+  var b = 34;//堆区
+
+  //类型检测 instanceof（左侧操作数为对象，右侧操作数为原型链中的一个类型时，返回true）
+  var a = { name: "mike", age: 20 };
+  console.log(a instanceof object);//true
+
+  var b = [12, 34, {}, ""];
+  console.log(b instanceof Array);//true
+
+  var person = function () {
+    //.....
+  };
+  var p = new person();
+
+
+  (function () {
+    //基本（原始）数据类型与引用(对象)类型的区别 赋值方式不同
+
+    var str_a = "a";
+    var str_b = str_a;//原始类型直接访问值，是值赋值
+    str_b = "b";//str_b的值为"b",而str_a的值仍然是"a"
+    console.log(str_a, str_b);//a,b
+
+    var obj_a = { v: "a" };//obj_a存的是引用，引用堆内存的对象：{v:"a"};
+    var obj_b = obj_a;//obj_b存的也是引用，引用堆内存的值{v:"a"};是引用赋值
+    obj_b.v = "b";//通过obj_b访问（修改）堆内存的变量，这时候堆内存中对象值为：{v："b"},由于obj_a和obj_b引用的是堆内存中同一个对象值
+    //所以这时候打印的都是{V：“b”}
+    console.log(obj_a, obj_b);
+    //{v:"b"},{V:"b"}
+
+
+    obj_b={v:"c"};//注意·：因为改的是整个对象，这里会在堆内存中创建一个新的对象值：{v:"c"},而现在的obj_b引用的是这个对象，
+    //所以这里打印的obj_a依旧是{v:"b"},而obj_b是{v：“c”}（两者在内存中引用的是不同对象了）
+    console.log(abj_a,obj_b);
+    //{v:"b"},{v:"c"}
+  }());
+
+  
+</script>
+
+</html>

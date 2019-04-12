@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<title>第5章</title>
+  	<meta charset="UTF-8">
+</head>
+<body>
+
+</body>
+<script>
+
+
+    var x="1";
+    //++x先进行运算，然后输出
+    //x++先输出，在运算
+    console.log(++x);
+    console.log(x++);
+    console.log(x);
+
+    NaN===NaN;//false
+
+    //!=(相当于==的逆运算)
+
+    
+</script>
+</html>

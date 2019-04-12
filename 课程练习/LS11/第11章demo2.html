@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function fn() {
+        var arr1 = [];
+        for (var i = 0; i < 10; i++) {
+            (function (j) {
+                arr1[j] = function () {
+                    return j;//形成独立的作用域
+                    //j只在自己的作用域里起作用
+                    //避免变量的非期望共享
+                }
+            })(i)
+            // arr1[i]=function(){
+            //     return i;//执行完，return最后一个i
+            // }
+        }
+        return arr1;
+    }
+    fn()[0]();
+
+    
+</script>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //闭包：函数（addNUm）内部定义的函数(return匿名函数)
+    //与其相关作用域中的变量（start）形成的实体
+    //start会一直保存在内存中不会被释放
+    function addNum(start) {
+        return function (step) {
+            start += step;
+            return start;
+        }
+        //正常函数执行完，变量会释放
+        //start不释放（存在内存中），因为有闭包的存在
+    }
+    var fn3 = addNum(10);
+    console.log = (fn3(1));
+    console.log = (fn3(1));
+    console.log = (fn3(1));
+
+
+    //foo()两次执行，形成俩个闭包
+    //不会互相关联
+    //执行一次会有一个闭包，闭包与闭包之间，不会相互之间影响
+    function foo() {
+        var i = 0;
+        function bar() {
+            console.log(++i);
+        }
+        return bar;
+    }
+    var a = foo();
+    var b = foo();
+    a();
+    a();
+    b();
+
+
+// 闭包的影响：
+//   1。闭包让我们可以访问导函数内部定义的变量
+//   2.闭包让关联作用域中的特定变量保存在内存中，不释放
+
+
+   var tmp=100;
+   function foo(x){
+       var tmp=3;
+       return function(y){
+           console.log(x+y+(++tmp));
+       }
+   }
+   var fee=foo(2);
+   fee(10);
+   fee(10);
+   fee(10);
+</script>
+
+</html>
