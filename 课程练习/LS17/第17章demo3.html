@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function Person(username,age){
+        this.username=username;
+        this.age=age;
+    }
+    Person.prototype.constructor==Person;
+    var person=new Person("zhangsan",20);
+    person.constructor==Person;
+
+    var obj=new Object();
+    obj.constructor==Object;
+
+
+
+   (function(w,d){
+       function inputidentify(){
+           this._init();
+       }
+   
+   inputidentify.prototype._init=function(){
+       var inputObject=d.getElementById(inputId);
+       this.inputObject=inputObject;
+   }
+   inputidentify.prototype._effect=function(){
+       this.inputObject.onblur=function(){
+           alert("失去焦点");
+       }
+       this.inputObject.onfocus=function(){
+           alert("没有焦点");
+       }
+
+   }
+   x.inputidentify=inputidentify
+   })(window,document)
+
+   var input=new inputidentify("username");
+</script>
+</html>

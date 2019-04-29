@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>构造函数</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function Person(username,age){
+        this.username=username;
+        this.age=age;
+    }
+
+    //共有的方法可以放到prototype里
+    Person.prototype.sayHi=function(){
+        console.log(this.username);
+    }
+    var person1=new Person("zhangsan",30);
+    var person2=new Person("lisi",20);
+    console.log(person1.__proto__==person2.__proto__)
+    console.log(person2.__proto__==Person.prototype);
+    //person1和person2共用sayHi方法，节省内存空间
+    person1.sayHi();
+    person1.sayHi();
+
+    /*
+       Person.prototype==person.__proto
+       Person.prototype.constructor==Person
+       Person.prototype.__proto__=Object.prototype;
+       Onject.prototype.constructor=Object;
+       Object.prototype.__proto__==null;
+
+    */
+
+ 
+</script>
+</html>
