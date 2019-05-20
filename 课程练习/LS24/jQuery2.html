@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #container {
+            height: 400px;
+            width: 800px;
+            margin: 0 auto;
+            border: 1px solid red;
+        }
+
+        img {
+            width: 150px;
+        }
+
+        #btnlist {
+            width: 1000px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <tr>
+            <td>用户名：</td>
+            <td>
+                <input type="text" name="username" id="username" />
+                <span class="error"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>密码：</td>
+            <td>
+                <input type="password" name="pwd" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" value="登录" />
+            </td>
+        </tr>
+    </table>
+
+
+
+
+    <div id="container">
+        <img src="白熊.gif" id="img1">
+    </div>
+    <div id="btnlist">
+        <button id="after"> after</button>
+    </div>
+    <div id="btnlist">
+        <button id="before"> before</button>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    /*
+      $(选择器).val();
+      $("html标记")
+      $(选择器).append();向选中元素内部添加一个新元素
+      $(选择器).remove();将特定元素从页面结构中移除
+    */
+    // $("#username").blur(function () {
+    //     var inputVal = $(this).val();
+    //     var errorTip = $("<span class='error'>用户名不能为空</span>");
+    //     if (inputVal == "") {
+    //         $(this).parent().append(errorTip);
+    //     }
+    //     else {
+    //         $(".error").remove();
+    //     }
+    // })
+
+    /*
+  1.向特定元素的后面插入新的节点
+  after（） insertAfter（）
+  2.向特定元素的前面插入新的节点
+  before  insertBefore()
+  3.向特定元素标签内部最后的位置添加新的节点
+  append() appendTo()
+  4.向特定元素标签内部最前的位置添加新的节点
+  prepend() prependTo()
+  5.
+*/
+
+    $("#after").click(function () {
+        var $img2 = $("<img src='白熊.gif'>");
+        $("#img1").after($img2);
+    })
+    $("#before").click(function () {
+        var $img2 = $("<img src='白熊.gif'>");
+        $("#img1").before($img2);
+    })
+
+
+    /*
+      val()通常用于设置或者获取表单元素的value值
+      html()用于设置或获取双标记标签元素的标签内部的html内容
+      css()用于设置选中元素的样式 css("样式名","样式值")
+      css({"样式名":"样式值"})  设置对象，以键值对的形式，可以有很多个
+    */
+
+    $("#username").blur(function () {
+        var inputVal = $(this).val();
+        if (inputVal == "") {
+            $(".error").html("用户名不能为空");
+            // $(".error").css("color", "red");
+            //可以写对像
+            $(".error").css({
+                "color":"purple",
+                "font-size":"30px"
+            });
+        }
+    })
+
+</script>
+
+</html>

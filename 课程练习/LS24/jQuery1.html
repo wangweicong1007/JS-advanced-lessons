@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            background:#ddd;
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="绑定点击事件" id="btn1"/>
+    <input type="button" value="绑定点击事件" id="btn2"/>
+    <input type="button" value="绑定点击事件" id="btn3"/>
+
+
+  
+    <img src="白熊.gif">
+
+
+    <div>层1</div>
+    <div>层2</div>
+    <div>层3</div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    /*
+      jquery包装集，事件方法（回调函数）
+    */
+    $("#btn1").click(function(){
+        alert("按钮被点击了");
+    })
+
+
+    $(":button").click(function(){
+        alert("按钮被点击了");
+    })
+
+     $("img").mouseover(function(){
+         $(this).css("border","2px solid red");
+     })
+    
+
+
+     $("div").mouseover(function(){
+         $(this).css("background-color","blue");
+     })
+     $("div").mouseout(function(){
+         $(this).css("background-color","gray");
+     })
+     $("div").click(function(){
+         $(this).css("background-color","red");
+
+     })
+
+
+
+</script>
+</html>

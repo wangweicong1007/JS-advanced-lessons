@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>正则表达式</title>
+</head>
+
+<body>
+
+</body>
+<script>
+   /*
+      /正则表达式的文本部分/正则表达式的标识符
+      [xzy]指的匹配中括号中任意字符
+      标识符：
+      g全局的检索，获取的所有的匹配项还是只获取第一个
+      i表示是否忽略大小写（写是忽略）
+   */
+   var reg1 = /[bcf]at/gi;
+   // 把g和i去掉 
+
+   var reg2 = new RegExp(/[bcf]at/, "gi");
+   var reg3 = new RegExp("[bcf]at", "gi");
+   var str = "fat cat bat Fat ojiidd lppqw";
+   var arr = str.match(reg1);
+   console.log(arr);
+
+   var reg1 = /adf/gi;
+   var str = "abcdef adf kil adfff ad";
+   console.log(str.match(reg1));  //adf adf
+
+   /* 表示f出现0次或多次 */
+   var reg2 = /adf*/gi;
+   console.log(str.match(reg2));//adf adfff ad
+
+   /* .表示任意字符 */
+   var reg3 = /a.c/gi;
+   console.log(str.match(reg3));//abc
+
+
+   /* 
+     字符类别
+     \d表示的是任意的阿拉伯数字【0-9】
+     \D表示在特定位置上不能是阿拉伯数字
+   */
+   var reg4 = /a\dc/gi;
+   var reg4_2 = /a\Dc/gi;
+   var str4 = "a2c a3c abc";
+   console.log(str4.match(reg4));
+   console.log(str4.match(reg4_2));
+
+   /*
+      [xyz] 从中括号的字符集合当中任取一个字符
+      [^xyz]排除中括号字符集合中的字符
+   */
+   var str = "atf btf ktf"
+   var reg = /[^abc]tf/gi;
+   console.log(str.match(reg));
+
+
+   /*
+       ^匹配开始的位置
+   */
+   var reg1 = /^a[0-9]/gi;
+   var str1 = "a1b2c3";
+   console.log(str1.match(reg1));
+
+   /*
+      $匹配字符串结束位置
+   */
+   var reg2 = /[0-9]z$/gi;
+   var str2 = "abcd9z";
+   var str2_2 = "befbdfdfd9";
+   console.log(str2.match(reg2));//9z
+   console.log(str2_2.match(reg2));//null
+
+   /*
+      数量词：
+      ？表示之前的字符串出现0次或者1次
+      +表示之前的字符出现1次或多次
+   */
+   var reg1 = /abc?/gi;
+   var str1 = "abc ab kk";
+   str.replace(reg1, "x");
+
+   var reg2 = /abc+/gi;
+   var str2 = "abc abccc abcccccc ab";
+   str2.replace(reg2, "x");
+
+   var reg3 = /abc{1,3}/gi;
+   var str3 = "abc abcc abccc abcccc";
+   str3.replace(reg3, "x");
+
+   /*
+     
+   */
+
+   var reg = /\d.\s/gi;
+   /*
+      [abc]
+      [^abc]
+   */
+   var reg = /[xyz]a/gi;
+   var str1 = "xabjiya";
+   str1.replace(reg, "m");
+
+   /*
+      ^a 以特定字符起始
+      b$以特定的字符结束
+   */
+
+   /*
+     量词
+     a*字符出现0次  多次
+     a+字符出现1次 多次
+     a?字符出现0次  1次
+   */
+
+
+
+   /*
+     分组可以看作当前正则表达式的子规则，
+     分组匹配得到的内容，可以在exec方法调用的返回结果查看
+     
+   */
+   var reg1 = /(abc)\d/gi;
+   var str = "abc1efg2";
+   var result = reg.exec(str);
+   console.log(result);
+
+
+   var reg1=/(ab\d)(\def)\d/gi;
+   var str="ab31ef12";
+   var result=reg1.exec(str);
+   console.log(result);
+
+   
+
+   /*
+   反向引用，通过(\数字 )\m来引用前面出现的分组
+   m表示前面出现的几个分组
+   */
+   var reg2=/(ss)a\1/gi;
+   // var reg3=/(\d)a(\d)/gi;
+
+   var str2="ssassji";
+   var result=str2.replace(reg2,"x");
+   console.log(result);
+
+   /*
+  string.prototype
+       str.replace(正则表达式,"替换成的内容")；
+       str.match(正则表达式)
+            返回值是一个数组或者是null
+           [整个正则匹配到的内容，分组匹配到的内容，开始匹配位置的索引]
+      str.search(正则表达式)
+            在str当中检索符合正则表达式规则的内容，如果检索了
+            返回其第一个字符出现的位置，如果没有返回-1
+      
+   RegExp.prototype
+        reg.test(字符串)
+           验证字符串是否符合正则表达式规则，符合返回true,不符合返回false 
+
+   */
+   var reg=/(ss)abc\d/gi;
+   var str="kkafd ssabc2";
+   var result=str.match(reg);
+   console.log(result);
+
+
+   /*验证压缩文件格式*/
+   var reg=/(.*)\.(rar|zip|7zip|tgz)$/;
+   /*
+     (.*)压缩文件的名字
+     \. 对.进行转义，表示普通字符
+     (rar|zip|7zip|tgz)从其中任意取一个类型
+     $表示以前面的分组来结尾
+   */
+
+
+   var reg1=/^#[a-FA-F0-9]{6}$/;
+   /*
+      ^#表示的是以#开头
+      [a-FA-F0-9]表示集合，从其中任取一个字符 a-f A-F 0-9
+      {6}表示之前的字符出现6次
+      $表示以前面的分组来结尾
+   */
+</script>
+
+</html>

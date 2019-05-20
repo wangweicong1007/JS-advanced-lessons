@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .imgborder {
+            border: 5px solid red;
+        }
+
+
+        div {
+            height: 400px;
+            width: 400px;
+            background: red;
+            /* margin:0 auto; */
+        }
+    </style>
+</head>
+
+<body>
+    <img src="白熊.gif" id="img1">
+    <button id="btn">改变属性</button>
+    <button id="btn1">改变class</button>
+
+
+    <div></div>
+    <button id="slidedown">slideDown</button>
+    <button id="slideup">slideUp</button>
+    <button id="fadein">fadeIn</button>
+    <button id="fadeout">fadeOut</button>
+    <button id="animate">animate</button>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $("#btn").click(function () {
+        $("#img1").attr("src", "2.png");
+        $("#img1").attr("title", "这是一张图片")
+        alert($("#img1").attr("title"));
+
+        //移除特定属性
+        $("#img1").removeAttr("title");
+    })
+    $("#btn1").click(function () {
+        $("#img1").addClass("imgborder");
+        $("#img1").removeClass("imgborder");
+    })
+
+
+    /* 改变元素的高度来切换显示和隐藏*/
+    $("#slideup").click(function () {
+        $("div").slideUp(4000);
+    })
+    $("#slidedown").click(function () {
+        $("div").slideDown(4000);
+    })
+    /*fadeIn() fadeOut() 改变元素的透明度来切换显示和隐藏*/
+    $("#fadein").click(function () {
+        $("div").fadeIn(3000);
+    })
+    $("#fadeout").click(function () {
+        $("div").fadeOut(3000);
+    })
+    $("#animate").click(function(){
+        $("div").animate({
+            "margin-left":"500px"
+        },3000)
+    })
+</script>
+
+</html>
