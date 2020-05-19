@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+     function getXHR(url, callback) {
+        var xhr;
+        if (window.XMLHttpRequest) {
+          xhr = new XMLHttpRequest();
+        } else {
+          xhr = new ActiveXObjext('Microsoft.XMLHttp');
+        }
+        return xhr;
+     }
+     var ajax=getXHR();
+    ajax.open('get', 'http://t.weather.sojson.com/api/weather/city/101090101', true);
+    ajax.send(null);
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+        var txt = ajax.responseText;
+        var data=JSON.parse(txt);
+        callback(data);
+        console.log(data);
+        }
+    };
+</script>
+</html>
